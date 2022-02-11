@@ -17,10 +17,13 @@ Vue.http = Vue.prototype.$http = axios;
 Vue.use(
   new VueSocketIO({
     debug: process.env.NODE_ENV === "development",
-    connection: SocketIO(process.env.VUE_APP_SOCKET_URL || "http://sirindhorn.localhost", {
-      transports: ["polling", "websocket"],
-      path: "/node/socket.io",
-    }),
+    connection: SocketIO(
+      process.env.VUE_APP_SOCKET_URL || "http://localhost:3000",
+      {
+        transports: ["polling", "websocket"],
+        path: "/node/socket.io",
+      }
+    ),
     vuex: {
       store,
       actionPrefix: "SOCKET_",

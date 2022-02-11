@@ -1,6 +1,19 @@
 const devMode = process.env.NODE_ENV === "development";
 
 module.exports = {
+  pages: {
+    index: {
+      // entry for the page
+      entry: "src/main.js",
+      // the source template
+      template: "public/index.html",
+      // output as dist/index.html
+      filename: "index.html",
+      // when using title option,
+      // template title tag needs to be <title><%= htmlWebpackPlugin.options.title %></title>
+      title: "Kiosk Desktop @2022",
+    },
+  },
   transpileDependencies: ["vuetify"],
   configureWebpack: (config) => {
     // if (devMode) {

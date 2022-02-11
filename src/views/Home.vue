@@ -2,11 +2,26 @@
   <div class="kiosk-container">
     <div class="row">
       <div class="col-md-6 col-lg-6"></div>
-      <div class="col-md-6 col-lg-6" style="padding-top: 45px; text-align: right">
-        <button @click="$i18n.locale = 'th'" id="btn-th" titel="ภาษาไทย" type="button" class="btn btn-outline-light">
+      <div
+        class="col-md-6 col-lg-6"
+        style="padding-top: 45px; text-align: right"
+      >
+        <button
+          @click="$i18n.locale = 'th'"
+          id="btn-th"
+          titel="ภาษาไทย"
+          type="button"
+          class="btn btn-outline-light"
+        >
           <img src="@/assets/images/th.svg" alt="th" width="65px" />
         </button>
-        <button @click="$i18n.locale = 'en'" id="btn-en" titel="English" type="button" class="btn btn-outline-light">
+        <button
+          @click="$i18n.locale = 'en'"
+          id="btn-en"
+          titel="English"
+          type="button"
+          class="btn btn-outline-light"
+        >
           <img src="@/assets/images/us.svg" alt="en" width="65px" />
         </button>
       </div>
@@ -17,7 +32,10 @@
       <div v-cloak class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
           <h3>{{ $t("ข้อมูลทั่วไป") }}</h3>
-          <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-user-profile-block" style="height: 90%">
+          <div
+            class="iq-card iq-card-block iq-card-stretch iq-card-height iq-user-profile-block"
+            style="height: 90%"
+          >
             <div class="iq-card-body">
               <div class="user-details-block">
                 <div
@@ -31,7 +49,12 @@
                     margin-top: -85px !important;
                   "
                 >
-                  <img :src="avatar" alt="profile-img" class="avatar-130 img-fluid rounded" style="padding: 15px" />
+                  <img
+                    :src="avatar"
+                    alt="profile-img"
+                    class="avatar-130 img-fluid rounded"
+                    style="padding: 15px"
+                  />
                 </div>
                 <div class="text-center mt-3">
                   <h4>
@@ -75,7 +98,9 @@
                         <h4 class="text-primary" style="margin-left: 8%">
                           {{ $t("หน่วยบริการรับส่งต่อ") }}
                         </h4>
-                        <h5 style="margin-left: 15%">{{ getRight("hmain_name", "-") }}<span></span></h5>
+                        <h5 style="margin-left: 15%">
+                          {{ getRight("hmain_name", "-") }}<span></span>
+                        </h5>
                       </td>
                       <td class="text-center"></td>
                     </tr>
@@ -97,18 +122,31 @@
           </div>
 
           <div class="row">
-            <div v-for="(item, index) in services" :key="index" class="col-md-12 col-lg-12 col-sm-12">
-              <a href="#" class="button-effect" @click.prevent="onSelectService(item.serviceid)">
+            <div
+              v-for="(item, index) in services"
+              :key="index"
+              class="col-md-12 col-lg-12 col-sm-12"
+            >
+              <a
+                href="#"
+                class="button-effect"
+                @click.prevent="onSelectService(item.serviceid)"
+              >
                 <div
                   class="iq-card card-section-1"
                   :style="{
-                    background: service_id === item.serviceid ? '#ffffff' : '#17a2b8',
+                    background:
+                      service_id === item.serviceid ? '#ffffff' : '#17a2b8',
                   }"
                 >
                   <div class="iq-card-body" style="padding: 10px">
                     <div class="d-flex">
-                      <div class="d-flex flex-column flex-grow-1 gutter-b m-auto">
-                        <span class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 card-title-option">
+                      <div
+                        class="d-flex flex-column flex-grow-1 gutter-b m-auto"
+                      >
+                        <span
+                          class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 card-title-option"
+                        >
                           <h4
                             :class="{
                               'text-white': service_id !== item.serviceid,
@@ -116,7 +154,10 @@
                             }"
                           >
                             {{ index + 2 }}. {{ $t(item.btn_kiosk_name) }}
-                            <i v-show="service_id === item.serviceid" class="far fa-check-circle"></i>
+                            <i
+                              v-show="service_id === item.serviceid"
+                              class="far fa-check-circle"
+                            ></i>
                           </h4>
                         </span>
                       </div>
@@ -132,7 +173,12 @@
       <br />
       <div class="row">
         <div class="col-md-4 col-lg-4 col-sm-12">
-          <a v-if="(patient || right) && !service_id" href="#" class="button-effect" @click.prevent="onCancelAction()">
+          <a
+            v-if="(patient || right) && !service_id"
+            href="#"
+            class="button-effect"
+            @click.prevent="onCancelAction()"
+          >
             <div class="iq-card card-section-2" style="background: #dc3545">
               <div class="iq-card-body" style="padding: 10px">
                 <div class="d-flex">
@@ -140,7 +186,9 @@
                     <span
                       class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 card-title-option text-center"
                     >
-                      <h4 class="text-white"><i class="fas fa-arrow-left"></i> {{ $t("Cancel") }}</h4>
+                      <h4 class="text-white">
+                        <i class="fas fa-arrow-left"></i> {{ $t("Cancel") }}
+                      </h4>
                     </span>
                   </div>
                 </div>
@@ -154,7 +202,10 @@
     </section>
 
     <!-- Begin:: ป้อนเลข HN หรือ เลขบัตรประชาชน -->
-    <section v-if="!patient && !right && action === 'hn-or-idcard'" class="section-scan-idcard">
+    <section
+      v-if="!patient && !right && action === 'hn-or-idcard'"
+      class="section-scan-idcard"
+    >
       <div v-cloak class="row">
         <div class="col-md-12 col-lg-12 col-sm-12" style="padding-top: 140px">
           <div class="text-center" style="padding-top: 46px">
@@ -214,7 +265,9 @@
                     <span
                       class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 card-title-option text-center"
                     >
-                      <h4 class="text-white"><i class="fas fa-arrow-left"></i> {{ $t("Cancel") }}</h4>
+                      <h4 class="text-white">
+                        <i class="fas fa-arrow-left"></i> {{ $t("Cancel") }}
+                      </h4>
                     </span>
                   </div>
                 </div>
@@ -222,18 +275,31 @@
             </div>
           </a>
         </div>
-        <div class="col-md-4 col-lg-4 col-sm-12" style="padding-top: 115px"></div>
-        <div class="col-md-4 col-lg-4 col-sm-12" style="padding-top: 115px"></div>
+        <div
+          class="col-md-4 col-lg-4 col-sm-12"
+          style="padding-top: 115px"
+        ></div>
+        <div
+          class="col-md-4 col-lg-4 col-sm-12"
+          style="padding-top: 115px"
+        ></div>
       </div>
     </section>
     <!-- end:: ป้อนเลข HN หรือ เลขบัตรประชาชน -->
 
-    <section v-if="!patient && !right && action !== 'hn-or-idcard'" class="section-home">
+    <section
+      v-if="!patient && !right && action !== 'hn-or-idcard'"
+      class="section-home"
+    >
       <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
           <div class="service-title"><h1>หรือทำรายการโดย</h1></div>
           <div class="text-center">
-            <img src="@/assets/images/Thai-smart-card.png" alt="" style="width: 150px" />
+            <img
+              src="@/assets/images/Thai-smart-card.png"
+              alt=""
+              style="width: 150px"
+            />
             <h4>{{ loadingMsg }}</h4>
             <div v-show="loading" class="lds-dual-ring"></div>
             <!---->
@@ -241,13 +307,22 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-12 col-sm-12 animated animate__zoomIn faster" style="">
-          <a href="#" class="button-effect" @click.prevent="onSelectAction('hn-or-idcard')">
+        <div
+          class="col-xl-12 col-sm-12 animated animate__zoomIn faster"
+          style=""
+        >
+          <a
+            href="#"
+            class="button-effect"
+            @click.prevent="onSelectAction('hn-or-idcard')"
+          >
             <div class="iq-card card-section-1">
               <div class="iq-card-body">
                 <div class="d-flex">
                   <div class="d-flex flex-column flex-grow-1 gutter-b m-auto">
-                    <span class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 card-title-option">
+                    <span
+                      class="card-title font-weight-bolder text-dark-75 font-size-h5 mb-2 card-title-option"
+                    >
                       <h4>{{ $t("Enter your ID Card Number") }}</h4>
                     </span>
                   </div>
@@ -263,7 +338,11 @@
 
     <div class="row">
       <div class="col-md-12 col-lg-12 col-sm-12">
-        <marquee direction="left" scrollamount="5" style="font-size: 40px; color: rgb(165, 121, 237)">
+        <marquee
+          direction="left"
+          scrollamount="5"
+          style="font-size: 40px; color: rgb(165, 121, 237)"
+        >
           {{ news ? news.news_ticker_detail : "" }}
         </marquee>
       </div>
@@ -356,7 +435,9 @@ export default {
     },
     cidFormat: function () {
       if (this.patient) {
-        return String(_.get(this.patient, "citizenId", "")).substr(0, 9) + "XXXX";
+        return (
+          String(_.get(this.patient, "citizenId", "")).substr(0, 9) + "XXXX"
+        );
       } else if (this.right) {
         return String(_.get(this.right, "person_id", "")).substr(0, 9) + "XXXX";
       }
@@ -412,7 +493,6 @@ export default {
   },
   mounted() {
     this.$nextTick(function () {
-      console.log("nextTick");
       this.handleAppEvent();
       this.getMessages();
       this.fetchDataServices();
@@ -596,7 +676,10 @@ export default {
           // UCS = สิทธิหลักประกันสุขภาพแห่งชาติ
           // WEL = สิทธิหลักประกันสุขภาพแห่งชาติ (ยกเว้นการร่วมจ่ายค่าบริการ 30 บาท)
           // hmain 15049 = รพ.สิรินธร
-          if (_this.right.hmain === "15049" && (_this.right.maininscl === "WEL" || _this.right.maininscl === "UCS")) {
+          if (
+            _this.right.hmain === "15049" &&
+            (_this.right.maininscl === "WEL" || _this.right.maininscl === "UCS")
+          ) {
             //เป็นสิทธิบัตรทองโรงพยาบาลสิรินท
             //  เป็นสิทธิ ผู้สูงอายุ ๖๐-๗๙
             if (_this.right.paid_model === "5") {
@@ -640,7 +723,9 @@ export default {
             //_this.service_id = "40";
             //  _this.onCreateQueue(autoConfirm);
             Swal.fire({
-              title: _this.$t("คุณมี ใบส่งตัว/ใบ Refer มาพร้อมการรักษาวันนี้หรือไม่?"),
+              title: _this.$t(
+                "คุณมี ใบส่งตัว/ใบ Refer มาพร้อมการรักษาวันนี้หรือไม่?"
+              ),
               text: "",
               icon: "question",
               width: "60%",
@@ -686,7 +771,10 @@ export default {
                 _this.onCreateQueue();
               }
             });
-          } else if (_this.right.hmain === "15049" && _this.right.maininscl === "SSS") {
+          } else if (
+            _this.right.hmain === "15049" &&
+            _this.right.maininscl === "SSS"
+          ) {
             //สิทธิประกันสังคมโรงพยาบาลสิรินธร
             Swal.fire({
               icon: "warning",
@@ -761,7 +849,11 @@ export default {
       try {
         _this.loading2 = true;
         const body = { encrypted: encrypted };
-        const profile = await this.$http.post("/api/queue/decrypt-data", body, _this.httpConfig);
+        const profile = await this.$http.post(
+          "/api/queue/decrypt-data",
+          body,
+          _this.httpConfig
+        );
         _this.age = _.get(profile, "age", 0);
         // get right
         await _this.fetchPatientRight(profile.citizenId);
@@ -772,7 +864,10 @@ export default {
           // UCS = สิทธิหลักประกันสุขภาพแห่งชาติ
           // WEL = สิทธิหลักประกันสุขภาพแห่งชาติ (ยกเว้นการร่วมจ่ายค่าบริการ 30 บาท)
           // hmain 15049 = รพ.สิรินธร
-          if (_this.right.hmain === "15049" && (_this.right.maininscl === "WEL" || _this.right.maininscl === "UCS")) {
+          if (
+            _this.right.hmain === "15049" &&
+            (_this.right.maininscl === "WEL" || _this.right.maininscl === "UCS")
+          ) {
             //เป็นสิทธิบัตรทองโรงพยาบาลสิรินท
             //  เป็นสิทธิ ผู้สูงอายุ ๖๐-๗๙
             if (_this.right.paid_model === "5") {
@@ -816,7 +911,9 @@ export default {
             //_this.service_id = "40";
             //  _this.onCreateQueue(autoConfirm);
             Swal.fire({
-              title: _this.$t("คุณมี ใบส่งตัว/ใบ Refer มาพร้อมการรักษาวันนี้หรือไม่?"),
+              title: _this.$t(
+                "คุณมี ใบส่งตัว/ใบ Refer มาพร้อมการรักษาวันนี้หรือไม่?"
+              ),
               text: "",
               icon: "question",
               width: "60%",
@@ -862,7 +959,10 @@ export default {
                 _this.onCreateQueue();
               }
             });
-          } else if (_this.right.hmain === "15049" && _this.right.maininscl === "SSS") {
+          } else if (
+            _this.right.hmain === "15049" &&
+            _this.right.maininscl === "SSS"
+          ) {
             //สิทธิประกันสังคมโรงพยาบาลสิรินธร
             Swal.fire({
               icon: "warning",
@@ -934,12 +1034,17 @@ export default {
     fetchPatientRight: async function (cid) {
       const _this = this;
       try {
-        const right = await this.$http.get(`/node/api/queue/patient-right/${cid}`);
+        const right = await this.$http.get(
+          `/node/api/queue/patient-right/${cid}`
+        );
         this.setRight(_.get(right, "data"));
         if (_.get(right, "data")) {
-          const response = await this.$http.post(`/node/api/queue/calculate-age`, {
-            birthdate: _.get(right, "data.birthdate"),
-          });
+          const response = await this.$http.post(
+            `/node/api/queue/calculate-age`,
+            {
+              birthdate: _.get(right, "data.birthdate"),
+            }
+          );
           _this.age = _.get(response, "age", 0);
         }
         return right;
@@ -989,7 +1094,9 @@ export default {
         Swal.fire({
           icon: "warning",
           title: "",
-          text: _this.$t("กรุณาป้อนหมายเลขบัตรประจำตัวประชาชนที่ต้องการทำรายการ"),
+          text: _this.$t(
+            "กรุณาป้อนหมายเลขบัตรประจำตัวประชาชนที่ต้องการทำรายการ"
+          ),
         });
       } else {
         try {
@@ -1008,7 +1115,11 @@ export default {
             // UCS = สิทธิหลักประกันสุขภาพแห่งชาติ
             // WEL = สิทธิหลักประกันสุขภาพแห่งชาติ (ยกเว้นการร่วมจ่ายค่าบริการ 30 บาท)
             // hmain 15049 = รพ.สิรินธร
-            if (_this.right.hmain === "15049" && (_this.right.maininscl === "WEL" || _this.right.maininscl === "UCS")) {
+            if (
+              _this.right.hmain === "15049" &&
+              (_this.right.maininscl === "WEL" ||
+                _this.right.maininscl === "UCS")
+            ) {
               if (_this.right.paid_model === "5") {
                 //เป็น model 5
                 Swal.fire({
@@ -1047,12 +1158,15 @@ export default {
               }
             } else if (
               _this.right.hmain !== "15049" &&
-              (_this.right.maininscl === "WEL" || _this.right.maininscl === "UCS")
+              (_this.right.maininscl === "WEL" ||
+                _this.right.maininscl === "UCS")
             ) {
               //_this.service_id = "40";
               //  _this.onCreateQueue(autoConfirm);
               Swal.fire({
-                title: _this.$t("คุณมี ใบส่งตัว/ใบ Refer มาพร้อมการรักษาวันนี้หรือไม่?"),
+                title: _this.$t(
+                  "คุณมี ใบส่งตัว/ใบ Refer มาพร้อมการรักษาวันนี้หรือไม่?"
+                ),
                 text: "",
                 icon: "question",
                 width: "60%",
@@ -1098,7 +1212,10 @@ export default {
                   _this.onCreateQueue();
                 }
               });
-            } else if (_this.right.hmain === "15049" && _this.right.maininscl === "SSS") {
+            } else if (
+              _this.right.hmain === "15049" &&
+              _this.right.maininscl === "SSS"
+            ) {
               //สิทธิประกันสังคมโรงพยาบาลสิรินธร
               Swal.fire({
                 icon: "warning",
@@ -1200,9 +1317,14 @@ export default {
             right: _this.right,
             locale: _this.$i18n.locale,
           };
-          const created = await this.$http.post(`/node/api/queue/create-queue`, body);
+          const created = await this.$http.post(
+            `/node/api/queue/create-queue`,
+            body
+          );
           this.$socket.emit("register", created);
-          this.printTicket(`http://sirindhorn.localhost/queue/kiosk/print-ticket2?id=${created.modelQueue.q_ids}`);
+          this.printTicket(
+            `${process.env.VUE_APP_API_BASE_URL}/queue/kiosk/print-ticket2?id=${created.modelQueue.q_ids}`
+          );
           //   window.open(`/queue/kiosk/print-ticket?id=${created.modelQueue.q_ids}`, 'myPrint', 'width=800, height=600')
           Swal.fire({
             icon: "success",
@@ -1299,12 +1421,14 @@ export default {
 .card-section-1:hover,
 .card-section-2:hover,
 .card-section-button:hover {
-  background: rgb(23, 162, 184) radial-gradient(circle, transparent 1%, rgb(23, 162, 184) 0) 50%/15000%;
+  background: rgb(23, 162, 184)
+    radial-gradient(circle, transparent 1%, rgb(23, 162, 184) 0) 50%/15000%;
   transform: scale(1.05);
 }
 .card-section-button-floor:hover,
 .card-section-button-service:hover {
-  background: rgb(23, 162, 184) radial-gradient(circle, transparent 1%, rgb(23, 162, 184) 0) 50%/15000% !important;
+  background: rgb(23, 162, 184)
+    radial-gradient(circle, transparent 1%, rgb(23, 162, 184) 0) 50%/15000% !important;
   transform: scale(1.05);
 }
 

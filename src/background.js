@@ -1,22 +1,29 @@
 "use strict";
 
-import { BrowserWindow, Menu, app, dialog, ipcMain, protocol, remote } from "electron";
+import {
+  BrowserWindow,
+  Menu,
+  app,
+  dialog,
+  ipcMain,
+  protocol,
+  remote,
+} from "electron";
 import { EVENTS, MODE, ThaiCardReader } from "./lib";
 import installExtension, { VUEJS_DEVTOOLS } from "electron-devtools-installer";
 
 import AutoLaunch from "auto-launch";
-import { autoUpdater } from "electron-updater";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import moment from "moment";
 
 moment.locale("th");
 
-const { exec } = require("child_process");
 const os = require("os");
 const Store = require("./app-store.js");
 const pkg = require("../package");
-// const autoUpdater = require("./auto-updater");
+const autoUpdater = require("./auto-updater");
 const path = require("path");
+const schedule = require("node-schedule");
 
 const store = new Store({
   // We'll call our data file 'user-preferences'
@@ -38,7 +45,9 @@ const updateObject = (oldObject, updatedProperties) => {
 };
 
 // Scheme must be registered before the app is ready
-protocol.registerSchemesAsPrivileged([{ scheme: "app", privileges: { secure: true, standard: true } }]);
+protocol.registerSchemesAsPrivileged([
+  { scheme: "app", privileges: { secure: true, standard: true } },
+]);
 
 let win;
 
@@ -91,7 +100,12 @@ async function createWindow() {
         { role: "minimize" },
         { role: "zoom" },
         ...(isMac
-          ? [{ type: "separator" }, { role: "front" }, { type: "separator" }, { role: "window" }]
+          ? [
+              { type: "separator" },
+              { role: "front" },
+              { type: "separator" },
+              { role: "window" },
+            ]
           : [{ role: "close" }]),
       ],
     },
@@ -101,8 +115,7 @@ async function createWindow() {
         {
           label: "Check for Updates...",
           click: async () => {
-            // autoUpdater.init(win);
-            autoUpdater.checkForUpdatesAndNotify();
+            autoUpdater.checkForUpdates();
           },
         },
         {
@@ -126,7 +139,7 @@ async function createWindow() {
     createProtocol("app");
     // Load the index.html when not in development
     win.loadURL("app://./index.html");
-    autoUpdater.checkForUpdatesAndNotify();
+    autoUpdater.checkForUpdates();
   }
 
   const reader = new ThaiCardReader();
@@ -181,18 +194,21 @@ async function createWindow() {
   });
   ipcMain.on("check-for-update", () => {
     // autoUpdater.init(win);
-    autoUpdater.checkForUpdatesAndNotify();
+    autoUpdater.checkForUpdates();
   });
 
   win.webContents.on("did-finish-load", () => {
     if (app.isPackaged) {
-      // autoUpdater.init(win);
+      autoUpdater.init(win);
       let autoLaunch = new AutoLaunch({
         name: pkg.name,
         path: isMac ? process.execPath : app.getPath("exe"),
       });
       autoLaunch.isEnabled().then((isEnabled) => {
         if (!isEnabled) autoLaunch.enable();
+      });
+      schedule.scheduleJob("0 * * * *", function () {
+        autoUpdater.checkForUpdates();
       });
     }
   });
