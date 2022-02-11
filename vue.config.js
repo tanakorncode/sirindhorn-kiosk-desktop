@@ -38,6 +38,15 @@ module.exports = {
         appId: "com.tanakorncode.app",
         publish: [
           {
+            provider: "github",
+            repo: "sirindhorn-kiosk-desktop",
+            owner: "tanakorncode",
+            releaseType: "release",
+            channel: "latest",
+            token: "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",
+            private: false,
+          },
+          {
             provider: "generic",
             url: process.env.PUBLISH_URL,
           },

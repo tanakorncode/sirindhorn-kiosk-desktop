@@ -1361,7 +1361,7 @@ export default {
     },
     printTicket(url) {
       const options = {
-        silent: false,
+        silent: true,
         deviceName: this.printerName,
         color: false,
         collate: false,
@@ -1379,7 +1379,7 @@ export default {
       let win = new BrowserWindow({
         width: 500,
         height: 600,
-        show: true,
+        show: false,
         webPreferences: {
           nodeIntegration: false,
           contextIsolation: false,
@@ -1391,7 +1391,7 @@ export default {
       win.webContents.on("did-finish-load", function () {
         win.webContents.print(options, (success, failureReason) => {
           if (!success) console.log(failureReason);
-          //   win.close()
+          win.close();
         });
       });
     },
