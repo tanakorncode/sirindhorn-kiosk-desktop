@@ -20,7 +20,7 @@ module.exports = {
       nodeIntegration: true,
       preload: "src/preload.js",
       builderOptions: {
-        productName: "Kiosk Desktop",
+        productName: "KioskDesktop",
         copyright: "Copyright © 2022 ${author}",
         appId: "com.tanakorncode.app",
         publish: [
