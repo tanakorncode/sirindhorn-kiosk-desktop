@@ -1,0 +1,79 @@
+{
+  "name": "st-kiosk-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "author": "tanakorncode <tanakorncode@gmail.com>",
+  "description": "An electron-vue project",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tanakorncode/sirindhorn-kiosk-desktop.git"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "electron:build": "vue-cli-service electron:build --mac --win --publish never",
+    "electron:serve": "vue-cli-service electron:serve",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps",
+    "electron:rebuild": "./node_modules/.bin/electron-rebuild",
+    "release": "vue-cli-service electron:build --mac --win --publish never",
+    "deploy": "vue-cli-service electron:build --mac --win --publish always"
+  },
+  "main": "background.js",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.0.0",
+    "auto-launch": "^5.0.5",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.6.1",
+    "core-js": "^3.6.5",
+    "datauri": "^2.0.0",
+    "electron-log": "^4.4.1",
+    "electron-updater": "^4.6.5",
+    "legacy-encoding": "^3.0.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "node-schedule": "^2.1.0",
+    "pcsclite": "^1.0.0",
+    "register-service-worker": "^1.7.1",
+    "socket.io-client": "^4.4.1",
+    "sweetalert2": "^11.4.0",
+    "vue": "^2.6.11",
+    "vue-i18n": "^8.27.0",
+    "vue-router": "^3.2.0",
+    "vue-socket.io": "^3.0.10",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-pwa": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "electron": "^13.6.9",
+    "electron-devtools-installer": "^3.1.0",
+    "electron-rebuild": "^3.2.7",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "lint-staged": "^9.5.0",
+    "node-sass": "^4.12.0",
+    "prettier": "^2.2.1",
+    "sass-loader": "^8.0.2",
+    "vue-cli-plugin-electron-builder": "~2.1.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+}
